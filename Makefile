@@ -11,34 +11,42 @@ PROGRAMS=parasite6 dos-new-ip6 detect-new-ip6 fake_router6 fake_advertise6 fake_
 LIBS=thc-ipv6-lib.o
 STRIP=strip
 
-PREFIX=/usr/local
+PREFIX=/usr
 MANPREFIX=${PREFIX}/share/man
 
-all:	$(LIBS) $(PROGRAMS) dnssecwalk dnsdict6 thcping6
+# Prefix each command with atk6
+NAMEPREFIX := atk6
+PROGRAMS   += dnssecwalk dnsdict6 thcping6
+PROGRAMS   := $(foreach program,$(PROGRAMS),$(NAMEPREFIX)-$(program))
 
-dnssecwalk:	dnssecwalk.c
-	$(CC) $(CFLAGS) -o $@ $^
+all:	$(LIBS) $(PROGRAMS)
 
-dnsdict6:	dnsdict6.c
-	$(CC) $(CFLAGS) -o $@ $^ -lpthread -lresolv
+$(NAMEPREFIX)-dnssecwalk:	dnssecwalk.c
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS) $(CPPFLAGS)
 
-thcping6:	thcping6.c $(LIBS)
+$(NAMEPREFIX)-dnsdict6:	dnsdict6.c
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS) $(CPPFLAGS) -lpthread -lresolv
+
+$(NAMEPREFIX)-thcping6:	thcping6.c $(LIBS)
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS) -lrt
 
-%:	%.c $(LIBS)
-	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS) 
+$(NAMEPREFIX)-%:	%.c $(LIBS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 strip:	all
-	$(STRIP) $(PROGRAMS) dnssecwalk dnsdict6 thcping6
+	$(STRIP) $(PROGRAMS)
 
 install: all strip
 	install -m0755 -d ${DESTDIR}${PREFIX}/bin
-	install -m0755 $(PROGRAMS) dnsdict6 thcping6 dnssecwalk *.sh ${DESTDIR}${PREFIX}/bin
+	install -m0755 $(PROGRAMS) ${DESTDIR}${PREFIX}/bin
+	install -m0755 dos_mld.sh ${DESTDIR}${PREFIX}/bin/$(NAMEPREFIX)-dos_mld
+	install -m0755 extract_hosts6.sh ${DESTDIR}${PREFIX}/bin/$(NAMEPREFIX)-extract_hosts6
+	install -m0755 extract_networks6.sh ${DESTDIR}${PREFIX}/bin/$(NAMEPREFIX)-extract_networks6
 	install -m0755 -d ${DESTDIR}${MANPREFIX}/man8
-	install -m0644 -D thc-ipv6.8 ${DESTDIR}${MANPREFIX}/man8
+	install -m0644 -D thc-ipv6.8 ${DESTDIR}${MANPREFIX}/man8/attack-toolkit6.8
 
 clean:
-	rm -f $(PROGRAMS) dnsdict6 thcping6 dnssecwalk $(LIBS) core DEADJOE *~
+	rm -f $(PROGRAMS) $(LIBS) core DEADJOE *~
 
 backup:	clean
 	tar czvf ../thc-ipv6-bak.tar.gz *
