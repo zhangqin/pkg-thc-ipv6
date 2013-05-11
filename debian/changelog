@@ -1,3 +1,16 @@
+thc-ipv6 (2.3-1) unstable; urgency=low
+
+  * Bump compat level to 9
+  * Imported Upstream version 2.3
+  * Add dependency on libssl-dev
+  * Add links to manpage for new commands
+  * Update .gitignore
+  * Refresh d/patches
+  * Move Homepage field to Source paragraph
+  * Fix watch file
+
+ -- Maykel Moya <mmoya@mmoya.org>  Sat, 11 May 2013 19:42:42 +0000
+
 thc-ipv6 (2.1-0.2) unstable; urgency=low
 
   * Added prefix 'atk6' to all binaries (NMU).
