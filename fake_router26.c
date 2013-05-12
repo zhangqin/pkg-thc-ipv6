@@ -27,7 +27,7 @@ void help(char *prg) {
   printf(" -R network/prefix  add a route entry (up to %d times)\n", MAX_ENTRIES);
   printf(" -r seconds         route entry lifetime of -R (defaults to %d)\n", rlife);
   printf(" -D dns-server      specify a DNS server (up to %d times)\n", MAX_ENTRIES);
-  printf(" -L searchlist      specify the DNS domain search list, seperate entries with ,\n");
+  printf(" -L searchlist      specify the DNS domain search list, separate entries with ,\n");
   printf(" -d seconds         dns entry lifetime of -D (defaults to %d\n", dlife);
   printf(" -M mtu             the MTU to send, defaults to the interface setting\n");
   printf(" -s sourceip        the source ip of the router, defaults to your link local\n");
@@ -37,7 +37,7 @@ void help(char *prg) {
   printf(" -t ms              retrans timer (defaults to %d)\n", trans);
   printf(" -p priority        priority \"low\", \"medium\", \"high\" (default), \"reserved\"\n");
   printf(" -F flags           Set one or more of the following flags: managed, other,\n");
-  printf("                   homeagent, proxy, reserved; seperate by comma\n");
+  printf("                   homeagent, proxy, reserved; separate by comma\n");
   printf(" -E type            Router Advertisement Guard Evasion option. Types: \n");
   printf("     H             simple hop-by-hop header\n");
   printf("     1             simple one-shot fragmentation header (can add multiple)\n");

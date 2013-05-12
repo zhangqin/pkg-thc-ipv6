@@ -271,7 +271,7 @@ int main(int argc, char *argv[]) {
           src6 = thc_resolve6(optarg);
           break;
       default:
-          fprintf(stderr, "Error: unkown option %c\n", i);
+          fprintf(stderr, "Error: unknown option %c\n", i);
           exit(-1);
     }
   }

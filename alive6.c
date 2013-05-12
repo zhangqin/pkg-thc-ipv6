@@ -343,7 +343,7 @@ void get_ports_from_cmdline(int ports[], char *list, char param) {
   char mylist[strlen(list + 1)], *ptr, *ptr2;
 
   if (strtok(list, "0123456789,") != NULL) {
-    fprintf(stderr, "Error: ports must be defined by numbers and seperated by a comma, e.g. \"-%c 22,53,80\"\n", param);
+    fprintf(stderr, "Error: ports must be defined by numbers and separated by a comma, e.g. \"-%c 22,53,80\"\n", param);
     exit(-1);
   }
   strcpy(mylist, list);

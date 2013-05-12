@@ -354,7 +354,7 @@ int main(int argc, char *argv[]) {
     exit(-1);
   }
   if (ping < 1 || test_end < test_start) {
-    printf("dont fuck up the command line options!\n");
+    printf("don't fuck up the command line options!\n");
     exit(-1);
   }
   if (argv[optind + 2] != NULL)

@@ -28,7 +28,7 @@ void help(char *prg) {
   printf("  -k key     encrypt the content with Blowfish-160\n");
   printf("  -s resend  send each packet RESEND number of times, default: 1\n");
   printf("\n");
-  printf("Sends the content of FILE covertly to the target, And its POC - dont except\n");
+  printf("Sends the content of FILE covertly to the target, And its POC - don't except\n");
   printf("too much sophistication - its just put into the destination header.\n");
   exit(-1);
 }
