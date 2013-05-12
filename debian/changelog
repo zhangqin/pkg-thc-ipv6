@@ -1,3 +1,11 @@
+thc-ipv6 (2.3-2) unstable; urgency=low
+
+  * Fix capitalization of Linux in Description
+  * Fix minus signs in manpage
+  * Add patch for fixing spelling errors in binaries
+
+ -- Maykel Moya <mmoya@mmoya.org>  Sun, 12 May 2013 21:31:34 +0200
+
 thc-ipv6 (2.3-1) unstable; urgency=low
 
   * Bump compat level to 9
